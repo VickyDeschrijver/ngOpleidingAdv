@@ -4,22 +4,47 @@
 
 <div class="film" ng-model="student">
 
+
+
    <div class="kol" >
-        <h2> [{{$index}}] {{ student.familieNaam }} {{student.voorNaam}} <small>-- {{movie.filmNr}} --</small></h2>
-<!--        <p> {{movie.beschrijving}}</p>
-        <dl>
-            <dt> Regisseur:</dt>
-            <dd> {{movie.regisseur}} </dd>
-            <dt> genre:</dt>
-            <dd> {{movie.genre}} </dd>
-            <dt> duurtijd:</dt>
-            <dd> {{movie.duur}} </dd>
-            <dt> release:</dt>
-            <dd> {{movie.release}} </dd>
-            <dt> Cast:</dt>
-            &lt;!&ndash;<dd> {{movie.cast}} </dd>&ndash;&gt;
+
+
+
+        <h2> {{ student.familieNaam }} {{student.voorNaam}} <small>IKL -- {{student.iklNr}} --</small></h2>
+
+        <p> Rijksregisternummer: {{student.rrNr}}</p>
+
+        <dl class="studentDet">
+            <dt> Adresgegevens:</dt>
+            <dd> {{student.adres}} </dd>
+            <dt> Email:</dt>
+            <dd> <a href="mailto:{{student.email}}"> {{student.email}} </a></dd>
         </dl>
-        <a ng-href="#/films/edit/{{movie._id}}"> edit </a>
+
+        <dl ng-repeat="opleiding in student.opleiding" class="studentDet">
+            <dt> Opleiding:</dt>
+            <dd> {{opleiding.oplNaam}} </dd>
+            <dt> Opleidingscode:</dt>
+            <dd> {{opleiding.oplCode}}</dd>
+            <dt> Start opleiding:</dt>
+            <dd> {{opleiding.begin}}</dd>
+            <dt> Geslaagd?</dt>
+            <dd> {{opleiding.geslaagd}}</dd>
+            <dt> Beschrijving:</dt>
+            <dd> {{opleiding.beschrijving}}</dd>
+
+        </dl>
+
     </div>
-    <p> <a ng-href="#/films/"> terug naar filmlijst </a> </p>-->
+
+
+
+    <div class="knopDet">
+        <button><a ng-href="#/students/oplnew/{{student._id}}"> opleiding toevoegen </a></button>
+        <button><a ng-href="#/students/edit/{{student._id}}"> edit </a></button>
+        <button><a ng-href="#/students"> Terug naar Student overzicht </a></button>
+    </div>
+
+
+
 </div>

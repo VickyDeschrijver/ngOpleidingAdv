@@ -8,26 +8,55 @@
     <p> ZOEK opleiding: <input type="text" ng-model="zoeken.opleiding.oplNaam" placeholder="zoek opleidingen studenten..."> </p>
 
     <p> ZOEK Opleiding:
-        <select ng-model="opleiding">
+        <select ng-model="oplType">
             <option selected="selected" value=""> Alle </option>
-            <!--<option ng-repeat="opleiding in opleidingen | unique:'opleiding.oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} </option>-->
+            <option ng-repeat="opleiding in opleidingen | unique:'oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} </option>
         </select>
     </p>
 
     <p> <a href="#/opleidingen/new/"> NIEUWE opleidingsfiche </a> </p>
 
-    <div ng-repeat="opleiding in opleidingen">
-        <p> {{opleiding.oplNaam}}</p>
-    </div>
 
-    <!-- dropdown opleidingen -->
+    <table class="table-hover">
+        <thead>
+        <tr>
+            <th> </th>
+            <th> Naam </th>
+            <th> Code </th>
+            <th> Max Duur </th>
+            <th> Beschrijving </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="opleiding in opleidingen | filter:oplType" ng-model="opleiding"  >
+            <th><span class="fontawesome-leaf"></span> </th>
+            <th> {{opleiding.oplNaam | uppercase}}</th>
+            <th> {{opleiding.oplCode}}</th>
+            <th> {{opleiding.duur}} <small> maanden </small></th>
+            <th> {{opleiding.beschrijving}}</th>
+            <th> <a href="#/opleidingen/{{opleiding._id}}"> details</a> </th>
+            <th> <a ng-href="#/opleidingen/edit/{{opleiding._id}}"> edit  </a></th>
+            <th> <a ng-click="deleteOpleiding(opleiding._id)"> verwijder </a> </th>
+
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+
+<!--
+    &lt;!&ndash; dropdown opleidingen &ndash;&gt;
     <ang-accordion ng-repeat="opleiding in opleidingen | filter:zoeken" close-icon-class="fontawesome-chevron-right" open-icon-class="fontawesome-chevron-down" icon-position="left">
         <collapsible-item item-title="{{opleiding.oplNaam | uppercase}} [{{opleiding.oplCode}}]">
 
             <button><a ng-href="#/opleidingen/edit/{{opleiding._id}}"> edit  </a></button>
             <button class="delete" ng-click="deleteOpleiding(opleiding._id)"> verwijder </button>
 
-            <!-- opleidingsinfo -->
+            &lt;!&ndash; opleidingsinfo &ndash;&gt;
             <div>
                 <p> id: {{opleiding._id}}</p>
                 <p> <span class="fontawesome-file-alt"></span> {{opleiding.beschrijving}}</p>
@@ -38,7 +67,7 @@
 
         </collapsible-item>
 
-    </ang-accordion>
+    </ang-accordion>-->
 
 
 </div>

@@ -5,8 +5,8 @@ angular.module('oplApp.opleidingen', [])
     .controller('OpleidingController',['$scope', '$http', 'opleidingService', function($scope, $http, opleidingService) {
         $scope.subtitel = "Opleidingen Lijst";
 
-        $http.get('http://localhost:8080/api/opleidingen').success(function(data) {
-            console.log('scope: ' + $scope);
+        $http.get('http://localhost:8000/api/opleidingen').success(function(data) {
+            //console.log('scope: ' + $scope);
             $scope.opleidingen = data;
 
 
@@ -27,7 +27,7 @@ angular.module('oplApp.opleidingen', [])
     .controller('OpleidingEditController', ['$scope', '$routeParams', '$window', 'opleidingService', function($scope, $routeParams, $window, opleidingService) {
         $scope.subtitel     =   "Edit een Opleidingsfiche";
         $scope.opleiding        =   opleidingService.get({},{'_id':$routeParams._id})
-        console.log($routeParams._id);
+        //console.log($routeParams._id);
         $scope.save         =   function(opleiding) {
             if($scope.opleiding._id) {
                 // update

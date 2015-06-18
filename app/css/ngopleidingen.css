@@ -64,6 +64,37 @@ ul li{
 .deeen {background: darkgray;}
 .deander {background: lightgray;}
 
+th{
+    padding: 10px 5px !important;
+    font-weight: 200;
+}
+tr {
+    border-bottom: 1px dashed cornflowerblue;
+}
+thead tr th{
+    font-weight: bold !important;
+}
+
+.studentDet{
+    border: 1px dashed blue;
+    padding: 15px;
+}
+.knopDet {
+    display: inline-block;
+    position: absolute;
+    top: 200px;
+    right: 5px;
+}
+
+aside {
+    background-color: dimgrey;
+    position: fixed;
+    top: 150px;
+    right: 10px;
+    color: white;
+    padding: 2px;
+}
+
 /**
  * For modern browsers
  * 1. The space content is one way to avoid an Opera bug when the

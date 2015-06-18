@@ -7,7 +7,7 @@ angular.module('oplApp.students', [])
 
     .controller('StudentController',['$scope', '$http', 'studentService', function($scope, $http, studentService) {
         $scope.subtitel = "Student Lijst";
-        $http.get('http://localhost:8080/api/students').success(function(data) {
+        $http.get('http://localhost:8000/api/students').success(function(data) {
             $scope.students = data;
             //console.log('scope: ' + data)
         })
@@ -45,6 +45,14 @@ angular.module('oplApp.students', [])
             }
             window.location.assign('/');
         }
+    }])
+
+    .controller('OplAddController', ['$scope', '$routeParams', 'opleidingService', 'studentService', function($scope, $routeParams, opleidingService, studentService) {
+        $scope.subtitel =   "Voeg een opleiding toe aan studentenFiche"
+        $scope.student        =   studentService.get({},{'_id':$routeParams._id})
+        $scope.opleiding        =   opleidingService.get({},{'_id':$routeParams._id})
+        console.log($routeParams._id);
+
     }])
 
 

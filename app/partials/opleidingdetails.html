@@ -2,11 +2,50 @@
 
 <h2> {{subtitel}} </h2>
 
-<div class="film" ng-model="student">
+<div class="film" ng-model="opleiding">
+
+    <div class="kol" ng-controller="CompareController">
+
+
+
+        <h2> {{ opleiding.oplNaam }}  <small> -- {{opleiding.oplCode}} --</small></h2>
+
+        <p> Max duurtijd: {{opleiding.duur}} maanden</p>
+
+        <dl class="studentDet">
+            <dt> Beschrijving:</dt>
+            <dd> {{opleiding.beschrijving}} </dd>
+        </dl>
+
+
+        <dl ng-repeat="opleiding in student.opleiding" class="studentDet">
+            <dt> Opleiding:</dt>
+            <dd> {{opleiding.oplNaam}} </dd>
+            <dt> Opleidingscode:</dt>
+            <dd> {{opleiding.oplCode}}</dd>
+            <dt> Start opleiding:</dt>
+            <dd> {{opleiding.begin}}</dd>
+            <dt> Geslaagd?</dt>
+            <dd> {{opleiding.geslaagd}}</dd>
+            <dt> Beschrijving:</dt>
+            <dd> {{opleiding.beschrijving}}</dd>
+
+        </dl>
+
+    </div>
+
+    <div class="knopDet">
+        <button><a ng-href="#/opleidingen/edit/{{student._id}}"> edit </a></button>
+        <button><a ng-href="#/opleidingen"> Terug naar Opleiding overzicht </a></button>
+    </div>
+
+
+
+<!--
 
    <div class="kol" >
-        <h2> [{{$index}}] {{ student.familieNaam }} {{student.voorNaam}} <small>-- {{movie.filmNr}} --</small></h2>
-<!--        <p> {{movie.beschrijving}}</p>
+        <h2> [{{$index}}] {{ student.familieNaam }} {{student.voorNaam}} <small>&#45;&#45; {{movie.filmNr}} &#45;&#45;</small></h2>
+&lt;!&ndash;        <p> {{movie.beschrijving}}</p>
         <dl>
             <dt> Regisseur:</dt>
             <dd> {{movie.regisseur}} </dd>
@@ -21,5 +60,5 @@
         </dl>
         <a ng-href="#/films/edit/{{movie._id}}"> edit </a>
     </div>
-    <p> <a ng-href="#/films/"> terug naar filmlijst </a> </p>-->
-</div>
+    <p> <a ng-href="#/films/"> terug naar filmlijst </a> </p>&ndash;&gt;
+</div>-->

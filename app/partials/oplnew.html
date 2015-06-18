@@ -1,0 +1,77 @@
+<!-- partial oplnew.html-->
+
+<h2> {{subtitel}}</h2>
+
+<form id="frmFilm" ng-model="student.opleiding" ng-submit="save(student.opleiding)">
+    <div>
+        <h3> Naam Student: {{student.familieNaam}} {{student.voorNaam}} </h3>
+    </div>
+
+    <div ng-model="opleiding">
+        <h4> 1 - Kies een opleiding </h4>
+
+        <p> KIES Opleiding:
+            <select ng-model="oplType">
+                <option selected="selected" value="*"> Geen </option>
+                <option ng-repeat="opleiding in opleidingen | unique:'oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} - {{opleiding.oplCode}} </option>
+            </select>
+        </p>
+
+        <table class="table-hover">
+            <thead>
+            <tr>
+                <th> </th>
+                <th> Naam </th>
+                <th> Code </th>
+                <th> Max Duur </th>
+                <th> Beschrijving </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="opleiding in opleidingen | filter:oplType" ng-model="opleiding"  >
+                <th><span class="fontawesome-leaf"></span> </th>
+                <th> {{opleiding.oplNaam | uppercase}}</th>
+                <th> {{opleiding.oplCode}}</th>
+                <th> {{opleiding.duur}} <small> maanden </small></th>
+                <th> {{opleiding.beschrijving}}</th>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div>
+        <h4> 2 - Kies een startdatum </h4>
+        <div pickadate ng-model="date" format="dd/mm/yyyy" min-date="minDate" max-date="maxDate"></div>
+        <div class="selected-date">
+
+        </div>
+    </div>
+
+    <div>
+        <h4> 3 - Geslaagd?</h4>
+        <label> Vink aan indien de opleiding afgemaakt en geslaagd<input type="checkbox" ng-model="checkboxModel.value1">  </label>
+    </div>
+
+
+<div>
+    <input type="submit" value="Bewaar gegevens"/>
+    <button><a ng-href="#/opleidingen"> Terug naar opleiding overzicht </a></button>
+</div>
+
+
+</form>
+
+
+
+<aside>
+    <p> Selected opleiding is: {{oplType}} </p>
+    <p> Selected date is: {{date || ' '}} </p>
+    <p> Geslaagd? {{checkboxModel.value1}}</p>
+
+</aside>
+
+
+
+

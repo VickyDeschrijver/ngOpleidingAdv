@@ -6,25 +6,51 @@
 
     <!-- ZOEK velden -->
     <p> ZOEK student: <input type="text" ng-model="zoeken.$" placeholder="zoek studentfiche..."> </p>
-    <p> ZOEK opleiding: <input type="text" ng-model="zoeken.opleiding.oplNaam" placeholder="zoek opleidingen studenten..."> </p>
 
-    <p> ZOEK Opleiding:
-        <select ng-model="opleiding">
-            <option selected="selected" value=""> Alle </option>
-            <option ng-repeat="opleiding in student.opleiding | unique:'opleiding.oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} </option>
-        </select>
-    </p>
+
 
     <p> <a href="#/students/new/"> NIEUWE studentfiche </a> </p>
 
-    <!-- dropdown students -->
+
+    <table class="table-hover">
+        <thead>
+        <tr>
+            <th> </th>
+            <th> Naam </th>
+            <th> Rijksregisternummer </th>
+            <th> <span class="fontawesome-envelope"></span> Mail </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="student in students | filter:zoeken"  >
+            <th><span class="fontawesome-leaf"></span> </th>
+            <th> {{student.familieNaam | uppercase}} {{student.voorNaam}}</th>
+            <th> {{student.rrNr}}</th>
+            <th> {{student.email}}</th>
+            <th> <a href="#/students/{{student._id}}"> details</a> </th>
+            <th> <a ng-href="#/students/edit/{{student._id}}"> edit  </a></th>
+            <th> <a ng-click="deleteStudent(student._id)"> verwijder </a> </th>
+
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+
+
+<!--
+    &lt;!&ndash; dropdown students &ndash;&gt;
     <ang-accordion ng-repeat="student in students | filter:zoeken" close-icon-class="fontawesome-chevron-right" open-icon-class="fontawesome-chevron-down" icon-position="left">
         <collapsible-item item-title="{{student.familieNaam | uppercase}} {{student.voorNaam}} [{{student.rrNr}}] - ikl: {{student.iklNr}}">
 
             <button><a ng-href="#/students/edit/{{student._id}}"> edit  </a></button>
             <button class="delete" ng-click="deleteStudent(student._id)"> verwijder </button>
 
-            <!-- studentinfo -->
+            &lt;!&ndash; studentinfo &ndash;&gt;
             <div>
                 <p> id: {{student._id}}</p>
                 <p> <span class="fontawesome-home"></span> {{student.adres}}</p>
@@ -33,7 +59,7 @@
 
             </div>
 
-            <!-- opleiding info -->
+            &lt;!&ndash; opleiding info &ndash;&gt;
             <div ng-model="opleiding" ng-repeat="opleiding in student.opleiding  | filter:oplType " class="opl">
                 <h3> <span class="fontawesome-leaf"></span> Opleiding: {{opleiding.oplNaam}} [{{opleiding.oplCode}}]</h3>
                 <p> <strong>Beschrijving: </strong>{{opleiding.beschrijving}}</p>
@@ -46,7 +72,7 @@
 
         </collapsible-item>
 
-    </ang-accordion>
+    </ang-accordion>-->
 
 
 </div>
