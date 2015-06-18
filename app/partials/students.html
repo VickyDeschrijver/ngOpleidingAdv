@@ -1,0 +1,52 @@
+<!-- partial students.html -->
+
+<h2> {{ subtitel}}</h2>
+
+<div class="container" ng-model="student">
+
+    <!-- ZOEK velden -->
+    <p> ZOEK student: <input type="text" ng-model="zoeken.$" placeholder="zoek studentfiche..."> </p>
+    <p> ZOEK opleiding: <input type="text" ng-model="zoeken.opleiding.oplNaam" placeholder="zoek opleidingen studenten..."> </p>
+
+    <p> ZOEK Opleiding:
+        <select ng-model="opleiding">
+            <option selected="selected" value=""> Alle </option>
+            <option ng-repeat="opleiding in student.opleiding | unique:'opleiding.oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} </option>
+        </select>
+    </p>
+
+    <p> <a href="#/students/new/"> NIEUWE studentfiche </a> </p>
+
+    <!-- dropdown students -->
+    <ang-accordion ng-repeat="student in students | filter:zoeken" close-icon-class="fontawesome-chevron-right" open-icon-class="fontawesome-chevron-down" icon-position="left">
+        <collapsible-item item-title="{{student.familieNaam | uppercase}} {{student.voorNaam}} [{{student.rrNr}}] - ikl: {{student.iklNr}}">
+
+            <button><a ng-href="#/students/edit/{{student._id}}"> edit  </a></button>
+            <button class="delete" ng-click="deleteStudent(student._id)"> verwijder </button>
+
+            <!-- studentinfo -->
+            <div>
+                <p> id: {{student._id}}</p>
+                <p> <span class="fontawesome-home"></span> {{student.adres}}</p>
+                <span class="fontawesome-envelope"></span><a href="mailto:{{student.email}}">  {{student.email}}</a>
+                <p> <span class="fontawesome-phone"></span> {{student.tel}}</p>
+
+            </div>
+
+            <!-- opleiding info -->
+            <div ng-model="opleiding" ng-repeat="opleiding in student.opleiding  | filter:oplType " class="opl">
+                <h3> <span class="fontawesome-leaf"></span> Opleiding: {{opleiding.oplNaam}} [{{opleiding.oplCode}}]</h3>
+                <p> <strong>Beschrijving: </strong>{{opleiding.beschrijving}}</p>
+                <p> <strong>Begin: </strong>{{opleiding.begin}}</p>
+                <p> <strong>Duurtijd: </strong>{{opleiding.duurtijd}} maanden</p>
+                <p> <strong>Geslaagd? </strong>{{opleiding.geslaagd}}</p>
+            </div>
+
+
+
+        </collapsible-item>
+
+    </ang-accordion>
+
+
+</div>

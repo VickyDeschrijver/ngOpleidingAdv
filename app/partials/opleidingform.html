@@ -1,0 +1,16 @@
+<!-- partial opleidingform.html -->
+
+<div>
+    <h2> {{subtitel}} </h2>
+    <form id="frmFilm" ng-model="opleiding" ng-submit="save(opleiding)">
+        <div><label> Opleiding_id </label><input type="text" ng-model="opleiding._id" readonly/></div>
+        <div><label> Code </label><input type="text" ng-model="opleiding.oplCode"/></div>
+        <div><label> Naam </label><input type="text" ng-model="opleiding.oplNaam"/></div>
+        <div><label> Beschrijving </label><input type="text" ng-model="opleiding.beschrijving"/></div>
+        <div><label> Duur </label><input type="text" ng-model="opleiding.duur"/></div>
+
+
+        <input type="submit" value="Bewaar gegevens"/>
+        <button><a ng-href="#/opleidingen"> Terug naar opleiding overzicht </a></button>
+    </form>
+</div>

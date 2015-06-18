@@ -1,0 +1,44 @@
+<!-- partial students.html -->
+
+<h2> {{ subtitel}}</h2>
+
+<div class="container" ng-model="opleiding">
+
+    <!-- ZOEK velden -->
+    <p> ZOEK opleiding: <input type="text" ng-model="zoeken.opleiding.oplNaam" placeholder="zoek opleidingen studenten..."> </p>
+
+    <p> ZOEK Opleiding:
+        <select ng-model="opleiding">
+            <option selected="selected" value=""> Alle </option>
+            <!--<option ng-repeat="opleiding in opleidingen | unique:'opleiding.oplNaam'" value="{{opleiding.oplNaam}}"> {{opleiding.oplNaam}} </option>-->
+        </select>
+    </p>
+
+    <p> <a href="#/opleidingen/new/"> NIEUWE opleidingsfiche </a> </p>
+
+    <div ng-repeat="opleiding in opleidingen">
+        <p> {{opleiding.oplNaam}}</p>
+    </div>
+
+    <!-- dropdown opleidingen -->
+    <ang-accordion ng-repeat="opleiding in opleidingen | filter:zoeken" close-icon-class="fontawesome-chevron-right" open-icon-class="fontawesome-chevron-down" icon-position="left">
+        <collapsible-item item-title="{{opleiding.oplNaam | uppercase}} [{{opleiding.oplCode}}]">
+
+            <button><a ng-href="#/opleidingen/edit/{{opleiding._id}}"> edit  </a></button>
+            <button class="delete" ng-click="deleteOpleiding(opleiding._id)"> verwijder </button>
+
+            <!-- opleidingsinfo -->
+            <div>
+                <p> id: {{opleiding._id}}</p>
+                <p> <span class="fontawesome-file-alt"></span> {{opleiding.beschrijving}}</p>
+                <p> <span class="fontawesome-calendar"></span> {{opleiding.duur}} maanden</p>
+
+
+            </div>
+
+        </collapsible-item>
+
+    </ang-accordion>
+
+
+</div>

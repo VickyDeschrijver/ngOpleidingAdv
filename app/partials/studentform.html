@@ -1,0 +1,18 @@
+<!-- partial studentform.html -->
+
+<div>
+    <h2> {{subtitel}} </h2>
+    <form id="frmFilm" ng-model="student" ng-submit="save(student)">
+        <div><label> Student_id </label><input type="text" ng-model="student._id" readonly/></div>
+        <div><label> famileNaam </label><input type="text" ng-model="student.familieNaam"/></div>
+        <div><label> voorNaam </label><input type="text" ng-model="student.voorNaam"/></div>
+        <div><label> iklNummer </label><input type="text" ng-model="student.iklNr"></input></div>
+        <div><label> Rijksregisternr </label><input type="text" ng-model="student.rrNr"/></div>
+        <div><label> Adresgegevens </label><input type="text" ng-model="student.adres"/></div>
+        <div><label> Email </label><input type="text" ng-model="student.email"/></div>
+        <div><label> Telefoon</label><input type="text" ng-model="student.tel" /></div>
+
+        <input type="submit" value="Bewaar gegevens"/>
+        <button><a ng-href="#/students"> Terug naar Student overzicht </a></button>
+    </form>
+</div>
